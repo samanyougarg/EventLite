@@ -1,0 +1,39 @@
+ <div id="map" style="max-width: 100%;height:300px"></div>
+ <script src="/markerclusterer/markerclusterer.js"></script>
+ <script>
+   function initMap() {
+   {{# if markers}}
+     var markers = [];
+         
+     var map = new google.maps.Map(document.getElementById('map'), {});
+     
+     markers.push(new google.maps.Marker({
+       position: { lat: 53.4808 , lng: -2.2426 }
+     }));
+     
+     {{#markers}}
+     markers.push(new google.maps.Marker({
+       position: { lat: {{#if lat}}{{lat}}{{else if}}53.4808{{/if}}, lng: {{#if lng}}{{lng}}{{else if}}-2.2426{{/if}} },
+       {{# if label }}
+       label: "{{label}}",
+       {{/if}}
+       map: map
+     }));
+     {{/markers}}
+
+     {{# if cluster }}
+     var markersCluster = new MarkerClusterer(map, markers, { imagePath: '/markerclusterer/m' });
+     {{/if}}
+     
+	var bounds = new google.maps.LatLngBounds();
+	for (var i = 0; i < markers.length; i++) {
+	 bounds.extend(markers[i].getPosition());
+	}
+	
+	map.fitBounds(bounds);
+	{{else}}
+		document.getElementById("gmaps").innerHTML = "No Events to display!";
+	{{/if}}
+   }
+ </script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2dWpvr2SyF70rbd0HIRgM0GaZxjdSUP8&callback=initMap"></script>

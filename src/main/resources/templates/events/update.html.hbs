@@ -1,0 +1,291 @@
+<!-- THE UPDATE EVENT PAGE -->
+
+{{#partial "content"}}
+
+<!-- HEADING -->
+<nav class="navbar navbar-default navbar-fixed-top">
+   <div class="container-fluid">
+      <div class="navbar-header">
+         <a class="navbar-brand" href="/../">EventLite</a>
+      </div>
+      <!-- NAVIGATION -->
+      <ul class="nav navbar-nav navbar-right">
+         <li><a href="/">Home</a></li>
+         <li class ="active"><a href="/events">Events</a></li>
+         <li><a href="/venues">Venues</a></li>
+      </ul>
+   </div>
+</nav>
+
+<div id="wrap">
+<!-- QUICK LINKS -->
+<div class="container-fluid2">
+   <ol class="breadcrumb">
+      <li><a href="/../">Home</a></li>
+      <li><a href="/../events.html">Events</a></li>
+      <li class="active">Update Event</li>
+   </ol>
+</div>
+
+<!-- UPDATE EVENT FUNCTION -->
+<div class="container-fluid3">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <h2 class="panel-title pull-left">Update Event</h2>
+         <div class="clearfix"></div>
+      </div>
+      {{#if error}}
+      <div class="alert alert-danger">
+         <strong>Error! </strong>{{error}}
+      </div>
+      {{/if}}
+      <!-- NAME FIELD -->
+      <div class="panel-body">
+         <form class="form-horizontal" method = "post" action="/events/{{event.id}}/update">
+            <div class="form-group">
+               <label class="control-label col-sm-3" for="name">Name:</label>
+               <div class="col-sm-6">
+                  <input type="text" class="form-control" name="name" value="{{event.name}}">
+               </div>
+            </div>
+            <!-- DESCRIPTION FIELD -->
+            <div class="form-group">
+               <label class="control-label col-sm-3" for="description">Description:</label>
+               <div class="col-sm-6">
+                  <textarea class="form-control" name="description" placeholder="Enter event description">{{event.description}}</textarea>
+               </div>
+            </div>
+            <!-- VENUE FIELD -->
+            <div class="form-group ui-widget">
+               <label class="control-label col-sm-3" for="venue">Venue:</label>
+               <div class="col-sm-6">
+                  <select name="venue" value="{{event.venue.id}}">
+                     {{#venues}}
+                     <option value="{{id}}">{{name}}</option>
+                     {{/venues}}
+                  </select>
+               </div>
+            </div>
+            <!-- DATE FIELD -->
+            <div class="form-group">
+               <label class="control-label col-sm-3" for="date">Date:</label>
+               <div class="col-sm-6">
+                  <div class="input-group date" id="date">
+                     <input type="text" class="form-control" name="date" value="{{dateFormat event.date "date"}}" placeholder="year-month-day">
+                     <span class="input-group-addon">
+                     <span class="fa fa-calendar"></span>
+                     </span>
+                  </div>
+               </div>
+            </div>
+            <!-- TIME FIELD -->
+            <div class="form-group">
+               <label class="control-label col-sm-3" for="time">Time:</label>
+               <div class="col-sm-6">
+                  <div class="input-group time" id="time">
+                     <input type="text" class="form-control" name="time" placeholder="hours:minutes:seconds" value="{{dateFormat event.time "time"}}">
+                     <span class="input-group-addon">
+                     <span class="fa fa-clock-o"></span>
+                     </span>
+                  </div>
+               </div>
+            </div>
+            <!-- SUBMIT BUTTON -->
+            <div class="form-group">
+               <div class="col-sm-offset-5 col-sm-5">
+                  <button type="submit" class="btn btn-hanuman">Update</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<nav class="footer navbar-default navbar-fixed-bottom">
+   <div class="container-fluid">
+      <div class="navbar-header-hanuman">
+         <a class="navbar-brand-hanuman" href="/">© EventLite. All Rights Reserved.</a>
+      </div>
+   </div>
+</nav>
+
+<!-- STYLING FOR UPDATE EVENT PAGE-->
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+*{
+	font-family: "Roboto";
+}
+
+.navbar-default {
+  background-color: #3f51b5;
+  border-color: #303f9f;
+}
+
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #C5CAE9;
+}
+
+.navbar-default .navbar-text {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #C5CAE9;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #FFFFFF;
+  background-color: #303f9f;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #C5CAE9;
+  background-color: #303f9f;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #303f9f;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #303f9f;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ffffff;
+}
+
+.navbar-default .navbar-link {
+  color: #ffffff;
+}
+
+.navbar-center
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+}
+
+.btn-hanuman { 
+  color: #ffffff; 
+  background-color: #3F51B5; 
+  border-color: #3F51B5; 
+} 
+ 
+.btn-hanuman:hover, 
+.btn-hanuman:focus, 
+.btn-hanuman:active, 
+.btn-hanuman.active, 
+.open .dropdown-toggle.btn-hanuman { 
+  color: #ffffff; 
+  background-color: #303F9F; 
+  border-color: #3F51B5; 
+} 
+
+.col-centered{
+    margin: 0 auto;
+    float: none;
+}
+
+.panel-heading h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    width: 75%;
+    padding-top: 8px;
+}
+
+.btn{
+    margin-right:10px;
+}
+
+.center-justified {
+  text-align: justify;
+  margin: 0 auto;
+  width: 15em;
+}
+
+.navbar-default .navbar-link:hover {
+  color: #C5CAE9;
+}
+
+body{
+  background: url("https://preview.ibb.co/m8uNmQ/33w738o.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top:100px;
+}
+
+#map{
+	display: none;
+}
+
+.navbar-header-hanuman {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand-hanuman {float:none;}
+
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #3f51b5;
+}
+
+</style>
+{{/partial}}
+
+{{> layouts/base title = "Update Event"}}
+

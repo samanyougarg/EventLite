@@ -1,0 +1,14 @@
+{
+  "title": "EventLite Venues",
+  "_self": "{{self_link}}",
+  "venues": [
+  	{{#venues}}
+  	{
+  		"id": {{id}},
+  		"name": "{{name}}",
+  		"capacity": {{capacity}},
+  		"_self": "{{self_link}}/{{id}}"
+  	},
+  	{{/venues}}
+  ]
+}

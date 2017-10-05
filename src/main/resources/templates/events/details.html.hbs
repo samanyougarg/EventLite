@@ -1,0 +1,262 @@
+<!-- THE ADD EVENT PAGE  -->
+
+{{#partial "content"}}
+
+<!-- HEADING -->
+<nav class="navbar navbar-default navbar-fixed-top">
+   <div class="container-fluid">
+      <div class="navbar-header">
+         <a class="navbar-brand" href="../">EventLite</a>
+      </div>
+      <!-- NAVIGATION  -->
+      <ul class="nav navbar-nav navbar-right">
+         <li><a href="/">Home</a></li>
+         <li class="active"><a href="/events">Events</a></li>
+         <li><a href="/venues">Venues</a></li>
+      </ul>
+   </div>
+</nav>
+
+<div id="wrap">
+<!-- QUICK LINKS -->
+<div class="container-fluid2">
+   <ol class="breadcrumb">
+      <li><a href="../">Home</a></li>
+      <li><a href="../events.html">Events</a></li>
+      <li class="active">Details</li>
+   </ol>
+</div>
+
+<!-- EVENT DETAILS -->
+<div class="container-fluid3">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <h3 class="panel-title pull-left">Event Details</h3>
+         <!-- UPDATE/DELETE FUNCTION -->
+         <a class="btn btn-hanuman pull-right" role="button" href="/events/{{id}}/delete" >Delete</a>
+         <a class="btn btn-hanuman pull-right" role="button" href="/events/{{id}}/update" >Update</a>
+         <div class="clearfix"></div>
+      </div>
+      <!-- EVENT DETAILS -->
+      <div class="panel-body">
+         <div class="col-xs-5 v-center">
+         	<p><b> Event : </b> &emsp; {{event.name}}</p>
+         	<p><b> Venue : </b> &ensp; &nbsp; {{venue.name}}</p>
+         	<p><b> Date : </b> &emsp; &nbsp; {{event.date}}</p>
+         	<p><b> Time : </b> &emsp; {{event.time}}</p>
+         	<p><b> Description : </b> &ensp; &nbsp; {{event.description}}</p>
+         	<p></p>
+         </div>
+         
+         <!-- GOOGLE MAPS API -->
+         <div class="col-xs-7">
+            {{> google-maps/maps center=center markers=markers }}
+         </div>
+      </div>
+      
+         <!-- TWITTER API -->
+      <div class="panel-body">
+         {{#if tweet}}
+         <div class="alert alert-success">
+            Your tweet <strong>{{tweet}}</strong> was published
+         </div>
+         {{/if}}
+         <!-- TWITTER FORM -->
+         <form class="form-horizontal" method = "post" action="/events/{{event.id}}">
+            <div class="form-group" style="background-color: rgb(29,202,255); padding-bottom: 15px; margin-bottom: -15px; padding-top: 15px; border-radius: 0px 0px 3px 3px;">
+               <label class="control-label col-sm-3" for="tweet"><i class="fa fa-twitter"></i></label>
+               <div class="col-sm-6">
+                  <div class="input-group tweet" id="tweet">
+                     <input type="text" class="form-control" name="tweet" placeholder="I'm gonna attend {{event.name}}!!! #SoExcited">
+                     <div class="input-group-btn">
+                        <button type="submit" class="btn btn-hanuman">Tweet it!</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<nav class="footer navbar-default navbar-fixed-bottom">
+   <div class="container-fluid">
+      <div class="navbar-header-hanuman">
+         <a class="navbar-brand-hanuman" href="/">© EventLite. All Rights Reserved.</a>
+      </div>
+   </div>
+</nav>
+<!-- STYLING FOR THE EVENT DETAILS PAGE -->
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+*{
+	font-family: "Roboto";
+}
+
+.navbar-default {
+  background-color: #3f51b5;
+  border-color: #303f9f;
+}
+
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #C5CAE9;
+}
+
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #C5CAE9;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #FFFFFF;
+  background-color: #303f9f;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #C5CAE9;
+  background-color: #303f9f;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #303f9f;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #303f9f;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+
+.navbar-center
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+}
+
+.panel-heading h3 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    width: 75%;
+    padding-top: 8px;
+}
+
+.btn-hanuman { 
+  color: #ffffff; 
+  background-color: #3F51B5; 
+  border-color: #3F51B5; 
+} 
+ 
+.btn-hanuman:hover, 
+.btn-hanuman:focus, 
+.btn-hanuman:active, 
+.btn-hanuman.active, 
+.open .dropdown-toggle.btn-hanuman { 
+  color: #ffffff; 
+  background-color: #303F9F; 
+  border-color: #3F51B5; 
+} 
+
+.btn{
+    margin-right:10px;
+}
+
+.center-justified {
+  text-align: justify;
+  margin: 0 auto;
+  width: 15em;
+}
+
+.navbar-default .navbar-link:hover {
+  color: #C5CAE9;
+}
+
+.navbar-header-hanuman {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand-hanuman {float:none;}
+
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #3f51b5;
+}
+
+body{
+  background: url("https://preview.ibb.co/iNTRD5/DSC_04821small1.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+   padding-top:100px
+}
+
+.v-center {
+  position: relative;
+  transform: translateY(40%);
+}
+</style>
+
+{{/partial}}
+
+{{> layouts/base title=event.name}}
